@@ -1,0 +1,55 @@
+<web-app xmlns="http://java.sun.com/xml/ns/javaee" version="2.5">
+
+   <!-- ========================= Hot handler =========================== -->
+   <security-constraint>
+      <web-resource-collection>
+         <url-pattern>/task/*</url-pattern>
+      </web-resource-collection>
+      <auth-constraint>
+         <role-name>admin</role-name>
+      </auth-constraint>
+   </security-constraint>
+   <security-constraint>
+      <web-resource-collection>
+         <url-pattern>/queue/*</url-pattern>
+      </web-resource-collection>
+      <auth-constraint>
+         <role-name>admin</role-name>
+      </auth-constraint>
+   </security-constraint>
+   
+   <servlet>
+      <servlet-name>keepAliveTask</servlet-name>
+      <servlet-class>com.giago.appengine.commons.task.KeepAliveTask
+      </servlet-class>
+   </servlet>
+   <servlet-mapping>
+      <servlet-name>keepAliveTask</servlet-name>
+      <url-pattern>/task/keepAliveTask</url-pattern>
+   </servlet-mapping>
+   
+   <servlet>
+      <servlet-name>keepAliveQueue</servlet-name>
+      <servlet-class>com.giago.appengine.commons.queue.KeepAliveQueue
+      </servlet-class>
+   </servlet>
+   <servlet-mapping>
+      <servlet-name>keepAliveQueue</servlet-name>
+      <url-pattern>/queue/keepAliveQueue</url-pattern>
+   </servlet-mapping>
+   
+   <!-- ======================== RequestReceiver ========================== -->
+   <servlet>
+      <servlet-name>contactRequest</servlet-name>
+      <servlet-class>com.giago.www.server.ContactRequestReceiver</servlet-class>
+   </servlet>
+   <servlet-mapping>
+      <servlet-name>contactRequest</servlet-name>
+      <url-pattern>/contactRequestReceiver</url-pattern>
+   </servlet-mapping>
+   
+   <!-- ========================= Welcome pages =========================== -->
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+</web-app>

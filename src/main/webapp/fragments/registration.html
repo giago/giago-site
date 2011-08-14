@@ -1,0 +1,130 @@
+<script type="text/javascript">
+function validateForm() {
+	var firstName = getValue("firstName");
+	if(isNotValid(firstName)) {
+		setErrorColor("firstName");
+		return false;
+	} else {
+		resetColor("firstName");
+	}
+	var email = getValue("email");
+	if(isNotValid(email)) {
+		setErrorColor("email");
+		return false;
+	} else {
+		resetColor("email");
+	}
+	var emailCheck = getValue("emailCheck");
+	if(isNotValid(emailCheck)) {
+		setErrorColor("emailCheck");
+		return false;
+	} else {
+		resetColor("emailCheck");
+	}
+	if(email != emailCheck) {
+		setErrorColor("emailCheck");
+		return false;
+	}
+	return true;
+}
+
+function getValue(id) {
+	var element = document.getElementById(id);
+	if(element === null || element === undefined) {
+		return null;
+	}
+	return element.value;
+}
+
+function isNotValid(value) {
+	if(value === null || value === "" || value === undefined) {
+		return true;
+	}
+	return false;
+}
+
+function setErrorColor(id) {
+	//alert("The inserted " + id + " is not valid"); 
+	var element = document.getElementById(id).parentNode.parentNode;
+	element.className += " error";
+}
+
+function resetColor(id) {
+	var element = document.getElementById(id).parentNode.parentNode;
+	element.className = element.className.replace("/\berror\b/", "");
+}
+</script>
+
+<center>
+	<br/>
+	<form action="/contactRequestReceiver" onsubmit="return validateForm();" method="post">
+	  <div class="row">
+	  	<div class="label">
+	  		Title :
+	  	</div>
+	  	<div class="input">
+	  		<input type="text" name="title" id="title" value=""/>
+	  	</div>
+	  </div>
+	  <div class="row">
+	  	<div class="label">
+	  		First name* :
+	  	</div>
+	  	<div class="input">
+	  		<input type="text" name="firstName" id="firstName" value="" />
+	  	</div>
+	  </div>
+	  <div class="row">
+	  	<div class="label">
+	  		Last name :
+	  	</div>
+	  	<div class="input">
+	  		<input type="text" name="lastName" id="lastName" value=""/>
+	  	</div>
+	  </div>
+	  <div class="row">
+	  	<div class="label">
+	  		Company :
+	  	</div>
+	  	<div class="input">
+	  		<input type="text" name="company" id="company" value=""/>
+	  	</div>
+	  </div>
+	  <div class="row">
+	  	<div class="label">
+	  		Email* :
+	  	</div>
+	  	<div class="input">
+	  		<input type="text" name="email" id="email" value=""/>
+	  	</div>
+	  </div>
+	  <div class="row">
+	  	<div class="label">
+	  		Confirm email :
+	  	</div>
+	  	<div class="input">
+	  		<input type="text" name="emailCheck" id="emailCheck" value=""/>
+	  	</div>
+	  </div>
+	  <div class="row">
+	  	<div class="label">
+	  		Phone :
+	  	</div>
+	  	<div class="input">
+	  		<input type="text" name="phone" id="phone" value=""/>
+	  	</div>
+	  </div>
+	  <div class="row">
+	  	<div class="label">
+	  		Reason :
+	  	</div>
+	  	<div class="input">
+	  		<textarea type="text" name="reason" id="reason" value="" ></textarea>
+	  	</div>
+	  </div>
+	  <div class="submitRow"> 
+	  	<input type="submit" value="Send"/>
+	  </div>
+	</form>
+	</div>
+</center>

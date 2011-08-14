@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project
+   xmlns="http://maven.apache.org/POM/4.0.0"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+   <modelVersion>4.0.0</modelVersion>
+   <parent>
+      <groupId>com.giago</groupId>
+      <artifactId>appengine-global</artifactId>
+      <version>0.1.0-SNAPSHOT</version>
+   </parent>
+   <groupId>com.giago</groupId>
+   <artifactId>web</artifactId>
+   <version>0.1.0-SNAPSHOT</version>
+   <packaging>war</packaging>
+   <name>gurus</name>
+   <description>ask gurus</description>
+   
+   <properties>
+      <jackson.version>1.5.1</jackson.version>
+      <clag.version>0.1.3-SNAPSHOT</clag.version>
+      <appengine-commons.version>0.2.1-SNAPSHOT</appengine-commons.version>
+   </properties>
+   
+   <dependencies>
+      <dependency>
+         <groupId>com.giago</groupId>
+         <artifactId>appengine-commons</artifactId>
+         <version>${appengine-commons.version}</version>
+      </dependency>
+      <dependency>
+         <groupId>com.giago</groupId>
+         <artifactId>clag</artifactId>
+         <version>${clag.version}</version>
+         <type>jar</type>
+      </dependency>
+      <dependency>
+         <groupId>org.json</groupId>
+         <artifactId>json</artifactId>
+         <version>20090211</version>
+      </dependency>
+      <dependency>
+         <groupId>org.codehaus.jackson</groupId>
+         <artifactId>jackson-core-lgpl</artifactId>
+         <version>${jackson.version}</version>
+      </dependency>
+      <dependency>
+         <groupId>org.codehaus.jackson</groupId>
+         <artifactId>jackson-mapper-lgpl</artifactId>
+         <version>${jackson.version}</version>
+      </dependency>
+   </dependencies>
+   
+   <build>
+      <plugins>
+         <plugin>
+            <groupId>net.kindleit</groupId>
+            <artifactId>maven-gae-plugin</artifactId>
+         </plugin>
+         <plugin>
+            <groupId>org.datanucleus</groupId>
+            <artifactId>maven-datanucleus-plugin</artifactId>
+            <configuration>
+               <mappingIncludes>**/model/*.class,**/shared/*.class</mappingIncludes>
+               <verbose>false</verbose>
+               <enhancerName>ASM</enhancerName>
+               <api>JDO</api>
+            </configuration>
+         </plugin>
+         <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>gwt-maven-plugin</artifactId>
+            <configuration>
+               <value>com.giago.www.canvas</value>
+            </configuration>
+            <executions>
+               <execution>
+                  <configuration>
+                     <runTarget>com.giago.www.canvas/index.jsp</runTarget>
+                  </configuration>
+                  <phase>compile</phase>
+                  <goals>
+                     <goal>compile</goal>
+                  </goals>
+               </execution>
+            </executions>
+         </plugin>
+      </plugins>
+   </build>
+   
+</project>
