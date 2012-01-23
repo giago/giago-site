@@ -1,6 +1,35 @@
 <html>
 	<head>
 		<link href="res/style.css" rel="stylesheet" type="text/css">
+		<link href="res/s3slider.css" rel="stylesheet" type="text/css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+		<script src="res/jquery.cross-slide.js"></script>
+		<style type="text/css" media="screen">
+		h2 {
+			color:#4D90FE;
+			background: white;
+			font-family: 'bell mt',georgia,'times new roman',serif;
+			font-size: 38px;
+			margin: 0 0 0 0;
+			padding: 15px 0 0 0;
+		}
+		
+		#slideshow {
+  			width: 900px;
+  			height: 400px;
+		}
+		</style>
+		<script>
+		  $(function() {
+		    $('#slideshow').crossSlide({
+		      sleep: 4,
+		      fade: 1
+		    }, [
+		      { src: './res/image-search.png' },
+		      { src: './res/account-switcher.png' }
+		    ])
+		  });
+		</script>
 	</head>
 	<body>
 		<div>
@@ -9,14 +38,20 @@
 		</div>
 		<div class="toolbar">
 			<div class="toolbar-content">
-				<a href="index.html"><img src="res/logo_small.png" class="logo"/></a>
-				<input type="button" value="Products" class="blue" onclick="window.location='products.html';" />
-				<input type="button" value="Clients" class=red onclick="window.location='clients.html';" />
-				<input type="button" value="Contacts" class="green" onclick="window.location='contacts.html';" />
+				<img src="res/logo_small.png" class="logo"/>
+				<input type="button" value="Home" class="blue title-button" onclick="window.location='index.html';" />
+				<input type="button" value="Services" class="red title-button" onclick="window.location='services.html';" />
+				<input type="button" value="Contacts" class="green title-button" onclick="window.location='contacts.html';" />
+				<a href="https://plus.google.com/102048052961229488268" >
+					<img src="https://ssl.gstatic.com/images/icons/gplus-32.png" 
+						style="vertical-align: middle; padding: 17px; float: right;"/>
+				</a>
 			</div>
 		</div>
 		<div class="content">
-			Index
+			<div class="article">
+				<div id="slideshow"></div>
+			</div>
 		</div>
 	</body>
 </html>
